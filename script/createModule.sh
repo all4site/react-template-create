@@ -10,10 +10,14 @@ fi
 if [[ ! $2 ]]; then
     mkdir -p components/$1
     cp templates/components/TemplateName.jsx components/$1/$1.jsx
+    cp templates/components/index.jsx components/$1/index.jsx
     cp templates/components/templatename.module.sass components/$1/${1,,}.module.sass
+
     sed -i s/templatename/${1,,}/g components/$1/${1,,}.module.sass
     sed -i s/templatename/${1,,}/g components/$1/$1.jsx
     sed -i s/TemplateName/$1/g components/$1/$1.jsx
+    sed -i s/TemplateName/$1/g components/$1/index.jsx
+
     echo 'Component created'
     exit
 fi
@@ -32,3 +36,5 @@ if [[ $2 == 'models' ]]; then
     echo 'Error component name'
     exit
 fi
+
+
